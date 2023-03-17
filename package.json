@@ -24,13 +24,14 @@
     "bundle": "npm run build && pkg . --out-dir ./exec/"
   },
   "devDependencies": {
-    "ava": "^2.2.0",
-    "pkg": "^4.4.0",
-    "rimraf": "^2.6.3",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "ava": "~2.2.0",
+    "pkg": "~4.4.0",
+    "rimraf": "~2.6.3",
+    "ts-node": "~8.3.0",
+    "typescript": "~3.5.3"
   },
   "dependencies": {
-    "commander": "^2.20.0"
+    "commander": "~2.20.0",
+    "sharp": "~0.31.3"
   }
 }

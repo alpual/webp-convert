@@ -1,20 +1,26 @@
 #!/usr/bin/env node
 
-import program from 'commander'
+import commander from 'commander'
+import { convertImage } from './convert-image'
+import { findImagesToConvert } from './find-images-to-convert';
 
-import { orderPizza } from './index'
- 
+const program = new commander.Command();
+
 program
+  .name('rgcf-image-convert')
   .version('0.1.0')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
+  .option('-a, --all')
+  .option('-d, --dir [path]')
+  .option('--dry')
+  .option('-v, --verbose')
   .parse(process.argv)
 
-orderPizza({
-  peppers: program.peppers,
-  pineapple: program.pineapple,
-  bbqSauce: program.bbqSauce,
-  cheeseType: program.cheese
-}).then(result => console.log(result.message))
+if (program.verbose) {
+  console.log(program);
+}
+
+const files = program.all ? findImagesToConvert(program.dir) : program.args;
+console.log('Converting images:', files);
+if (!program.dry){
+  convertImage(files, program.verbose);
+}
