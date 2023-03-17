@@ -8,11 +8,12 @@ export const convertImage = (files: string[], verbose: boolean) => {
       .toFile(changeExtension(file, '.webp'))
       .then(function (info) {
         if (verbose) {
-          console.log(file, info)
+          console.log(file, info);
         }
       })
       .catch(function (err) {
-        console.log(err)
+        console.error(err);
+        console.error('Error converting image', file);
       })
   })
 }

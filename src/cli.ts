@@ -7,13 +7,13 @@ import { findImagesToConvert } from './find-images-to-convert';
 const program = new commander.Command();
 
 program
-  .name('rgcf-image-convert')
+  .name('webp-convert')
   .version('0.1.0')
-  .option('-a, --all', 'Recursively run for all discovered image files in the target directory and it\'s subdirectories. Target directory is the current directory, unless the --dir flag is set.')
-  .option('-d, --dir [path]', 'Specify a target directory in which to run')
+  .option('-a, --all', 'Recursively run for all discovered image files in the target directory and it\'s subdirectories')
+  .option('-d, --dir <path>', 'Specify a target directory in which to run. Defaults to current working directory:', process.cwd())
   .option('-D, --dry', 'Dry run will not convert images, only output target files')
   .option('-f, --force', 'Overwrite existing .webp files')
-  .option('-v, --verbose')
+  .option('-v, --verbose', 'Log extra info')
   .parse(process.argv)
 
 if (program.verbose) {
