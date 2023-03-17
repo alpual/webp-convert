@@ -4,6 +4,23 @@ A node cli tool for converting images in a filesystem to webp. Based on the the 
 
 ## Usage
 
+webp-convert [options]
+
+Converts images to the webp format, if there is not alread a webp version of the image present.
+
+Options:
+```
+  -a, --all         Recursively run for all discovered image files in the target directory and it's subdirectories
+  -d, --dir <path>  Specify a target directory in which to run. Defaults to current working directory: (default: "/home/domains/riograndefarm.org/scripts/rgcf")
+  -D, --dry         Dry run will not convert images, only output target files
+  -f, --force       Overwrite existing .webp files
+  -v, --verbose     Log extra info
+  -V, --version     output the version number
+  -h, --help        output usage information
+```
+
+## Development
+
 ### **dev**
 
 `npm run dev`
