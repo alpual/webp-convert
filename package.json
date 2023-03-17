@@ -1,13 +1,13 @@
 {
-  "name": "typescript-cli-starter",
+  "name": "webp-converter",
   "private": true,
   "version": "1.0.0",
-  "description": "A simple and zero-opinion typescript starter template for building cross-platform command line applications.",
-  "author": "Khalid Zoabi <kzoabi@outlook.com>",
+  "description": "Converts images into webp images.",
+  "author": "Paul Wright",
   "keywords": [
     "typescript",
     "cli",
-    "starter"
+    "webp"
   ],
   "license": "MIT",
   "main": "./dist/index.js",
@@ -19,13 +19,15 @@
   "scripts": {
     "dev": "ts-node ./src/cli.ts",
     "clean": "rimraf ./dist/ ./exec/",
+    "clean:all": "rimraf ./dist/ ./exec/ ./node_modules",
     "build": "npm run clean && tsc",
     "test": "npm run build && ava --verbose",
-    "bundle": "npm run build && pkg . --out-dir ./exec/"
+    "bundle": "npm run build && pkg . && npm run bundle:sharp",
+    "bundle:sharp": "mkdir -p ./exec/sharp/build && mkdir -p ./exec/sharp/vendor && cp -R ./node_modules/sharp/build ./exec/sharp/build && cp -R ./node_modules/sharp/vendor ./exec/sharp/vendor"
   },
   "devDependencies": {
     "ava": "~2.2.0",
-    "pkg": "~4.4.0",
+    "pkg": "~5.8.1",
     "rimraf": "~2.6.3",
     "ts-node": "~8.3.0",
     "typescript": "~3.5.3"
@@ -33,5 +35,8 @@
   "dependencies": {
     "commander": "~2.20.0",
     "sharp": "~0.31.3"
+  },
+  "pkg": {
+    "outputPath": "exec"
   }
 }
