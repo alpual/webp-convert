@@ -19,6 +19,10 @@ if (program.verbose) {
   console.log(program);
 }
 
+if (!program.all && !program.args?.length) {
+  console.error('Requires at least one file to be specified, or use the --all flag (which is recursive)');
+}
+
 const files = program.all ? findImagesToConvert(program.dir) : program.args;
 console.log('Converting images:', files);
 if (!program.dry){
