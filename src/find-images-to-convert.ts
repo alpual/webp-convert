@@ -6,7 +6,7 @@ function matchesSuffix(str: string, suffixes: string[]){
   return suffixes.some(suffix => str.toLowerCase().endsWith(suffix.toLowerCase()))
 }
 
-function findAll(startPath: string, suffixes: string[]) {
+function findAll(startPath: string, suffixes: string[], force?: boolean) {
 
   if (!fs.existsSync(startPath)) {
     console.log("no dir ", startPath);
@@ -19,9 +19,9 @@ function findAll(startPath: string, suffixes: string[]) {
     const filename = path.join(startPath, files[i]);
     const stat = fs.lstatSync(filename);
     if (stat.isDirectory()) {
-      found = found.concat(findAll(filename, suffixes)); //recurse
+      found = found.concat(findAll(filename, suffixes, force)); //recurse
     } else if (matchesSuffix(filename, suffixes)) {
-      if (!files.find(f => changeExtension(filename, '.webp').endsWith(f))) {
+      if (force || !files.find(f => changeExtension(filename, '.webp').endsWith(f))) {
         found.push(filename);
       }
     };
@@ -29,9 +29,7 @@ function findAll(startPath: string, suffixes: string[]) {
   return found
 };
 
-export const findImagesToConvert = (startingDir?: string): string[] => {
+export const findImagesToConvert = (startingDir?: string, force?: boolean): string[] => {
   const dir = startingDir || process.cwd();
-  return [
-    ...findAll(dir, ['.jpg', '.jpeg', '.png']),
-  ]
+  return findAll(dir, ['.jpg', '.jpeg', '.png'], force)
 }
