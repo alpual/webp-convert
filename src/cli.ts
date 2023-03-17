@@ -8,12 +8,13 @@ const program = new commander.Command();
 
 program
   .name('webp-convert')
-  .version('0.1.0')
+  .description('Converts images to the webp format, if there is not alread a webp version of the image present.')
   .option('-a, --all', 'Recursively run for all discovered image files in the target directory and it\'s subdirectories')
   .option('-d, --dir <path>', 'Specify a target directory in which to run. Defaults to current working directory:', process.cwd())
   .option('-D, --dry', 'Dry run will not convert images, only output target files')
   .option('-f, --force', 'Overwrite existing .webp files')
   .option('-v, --verbose', 'Log extra info')
+  .version('0.1.0')
   .parse(process.argv)
 
 if (program.verbose) {
