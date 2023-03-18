@@ -6,7 +6,7 @@
     "target": "es6",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": [],
+    "types": ["node"],
   },
   "include": ["src/*"],
   "exclude": [

@@ -33,6 +33,7 @@
     "typescript": "~3.5.3"
   },
   "dependencies": {
+    "@types/node": "^18.15.3",
     "commander": "~2.20.0",
     "sharp": "~0.31.3"
   },

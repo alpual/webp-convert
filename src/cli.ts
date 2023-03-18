@@ -25,8 +25,16 @@ if (!program.all && !program.args.length) {
   console.error('Requires at least one file to be specified, or use the --all flag (which is recursive)');
 }
 
+if (program.verbose){
+  console.time('Total runtime');
+}
+
 const files = program.all ? findImagesToConvert(program.dir, program.force) : program.args;
 console.log('Converting images:', files);
 if (!program.dry){
   convertImage(files, program.verbose);
+}
+
+if (program.verbose){
+  console.timeEnd('Total runtime');
 }
